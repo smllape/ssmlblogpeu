@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Blog Sencillo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+        .post {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .post h2 {
+            margin-top: 0;
+        }
+        .post p {
+            margin-bottom: 10px;
+        }
+        #newPostForm {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Mi Blog Sencillo</h1>
+    </header>
+    <div class="container">
+        <form id="newPostForm">
+            <h2>Nuevo Post</h2>
+            <input type="text" id="postTitle" placeholder="Título" required><br>
+            <textarea id="postContent" placeholder="Contenido" required></textarea><br>
+            <button type="submit">Publicar</button>
+        </form>
+        <div id="postsContainer"></div>
+    </div>
+
+    <script>
+        const postsContainer = document.getElementById('postsContainer');
+        const newPostForm = document.getElementById('newPostForm');
+
+        newPostForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const postTitle = document.getElementById('postTitle').value;
+            const postContent = document.getElementById('postContent').value;
+
+            const post = document.createElement('div');
+            post.classList.add('post');
+            post.innerHTML = `
+                <h2>${postTitle}</h2>
+                <p>${postContent}</p>
+            `;
+
+            postsContainer.prepend(post);
+
+            newPostForm.reset();
+        });
+    </script>
+</body>
+</html>
